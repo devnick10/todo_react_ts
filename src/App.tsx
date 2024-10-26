@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Todoitem from "./components/Todoitem"
+import { saveTodos } from "./utils/features";
 
 
 function App() {
@@ -48,6 +49,13 @@ function App() {
     setTodos(newtodos)
 
    };
+
+  useEffect(()=>{
+
+    saveTodos(todos)
+
+  },[todos])
+
   
    
    
