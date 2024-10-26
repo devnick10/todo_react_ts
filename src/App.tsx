@@ -6,7 +6,6 @@ function App() {
 
     const [todos, setTodos] = useState<TodoItemType[]>([]);
     const [title, setTitle] = useState("")
-    const [isCompleted, setIsCompleted] = useState(false)
 
     const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -14,7 +13,7 @@ function App() {
       const todo: TodoItemType = {
         id: String(Math.random() * 1000),
         title: title,
-        isCompleted: isCompleted
+        isCompleted:false
       }
     setTodos((prev) => [...prev, todo]); 
     setTitle("")
@@ -24,7 +23,7 @@ function App() {
   }
 
 
-    const deleteHandler = (id:TodoItemType["id"]):void=>{
+  const deleteHandler = (id:TodoItemType["id"]):void=>{
      
    const newTodos:TodoItemType[] =  todos.filter((todo)=>todo.id !== id)
     
@@ -32,6 +31,15 @@ function App() {
 
   }
 
+  const completeHandler=(id:TodoItemType["id"])=>{
+   const newtodo:TodoItemType[] =  todos.map((todo)=>{
+      if(todo.id === id)todo.isCompleted = !todo.isCompleted
+      return todo
+    })
+
+    setTodos(newtodo)
+
+  };
 
    const editHandler = (id:TodoItemType["id"],newTitle:TodoItemType["title"]):void=>{
         
@@ -39,7 +47,7 @@ function App() {
     
     setTodos(newtodos)
 
-   }
+   };
   
    
    
@@ -66,7 +74,7 @@ function App() {
              }
              {
               todos.map((todo)=>(
-                <Todoitem editHandler={editHandler} deleteHandler={deleteHandler} todo={todo} />
+                <Todoitem editHandler={editHandler} completeHandler={completeHandler} deleteHandler={deleteHandler} todo={todo} />
               ))
              }
 

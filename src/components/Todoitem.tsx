@@ -3,11 +3,13 @@ import { useState } from "react";
 interface PropType {
   todo: TodoItemType;
   deleteHandler:(id:TodoItemType["id"])=>void;
-  editHandler:(id:TodoItemType["id"],newTitle:TodoItemType["title"])=>void;
+  completeHandler:(id:TodoItemType["id"])=>void;
+  editHandler:(id:TodoItemType["id"],
+  newTitle:TodoItemType["title"])=>void;
 }
 
 
-const Todoitem = ({ todo,deleteHandler,editHandler }: PropType) => {
+const Todoitem = ({ todo,deleteHandler,editHandler,completeHandler }: PropType) => {
     
   const [editActive,setEditActive] = useState<boolean>(false);
   const [textValue,setTextValue] = useState<string>(todo.title);
@@ -30,9 +32,7 @@ const Todoitem = ({ todo,deleteHandler,editHandler }: PropType) => {
             }
             
             <div className="flex items-center p-2 gap-5">
-                <input className="w-4 h-4" type="checkbox" onClick={()=>{
-                  todo.isCompleted = !todo.isCompleted
-                }} />              
+                <input className="w-4 h-4" type="checkbox" onClick={()=>completeHandler(todo.id)} />              
               <button onClick={()=>setEditActive((prev)=>!prev)} className="px-2 py2 rounded-xl">✏️</button>
               <button onClick={()=>deleteHandler(todo.id)} className="bg-red-500 hover:bg-red-700 hover:font-light px-4 py-2 rounded-xl">X</button>
             </div>
