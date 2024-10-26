@@ -1,5 +1,7 @@
 export const saveTodos = (todos:TodoItemType[]):void =>{
-
-localStorage.setItem("mytodos",JSON.stringify(todos))
-
+     try {
+        localStorage.setItem("mytodos", JSON.stringify(todos));
+      } catch (error) {
+        console.error("Error saving todos to localStorage:", error);
+      }
 }
