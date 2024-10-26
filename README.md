@@ -85,5 +85,5 @@ This will start the app locally, usually at `http://localhost:3000`.
 Contributions are welcome! Please fork the repo and submit a pull request.
 ## Deployed URL
 
-You can access the deployed app here. ""
+You can access the deployed app here. "https://todoapp-57pt.onrender.com"
 
